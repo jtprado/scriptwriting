@@ -1,0 +1,36 @@
+deep_research:
+  description: >
+    Conduct detailed research directly on the given topic.\n
+    The research should be as comprehensive as possible.\n
+    Include summary, key figures, timeline, societal impact, and sources.
+    
+    Inputs:
+    Topic: {topic}
+    Age Range: {age_range}
+    Target Audience: {target_audience}
+    Interests: {interests}
+
+  expected_output: >
+    A large HistoryResearchReport containing all needed details.
+  agent: historian
+
+split_research:
+  description: >
+    Take the comprehensive HistoryResearchReport and split it into 3 parts, each part containing:
+    - A portion of the summary (in chronological/story order)
+    - Key figures relevant to that part
+    - Timeline events relevant to that part
+    - Societal impact elements relevant to that part
+    - Sources (can be repeated or partitioned as necessary)
+    
+    The 3 parts should form a narrative sequence:
+    Part 1: Origins and initial concepts
+    Part 2: Development and evolution
+    Part 3: Final stages and lasting legacy
+
+    Inputs:
+    Full Research Report: {HistoryResearchReport}
+    
+  expected_output: >
+    A HistoryResearchSeries containing 3 HistoryResearchPart.
+  agent: splitter

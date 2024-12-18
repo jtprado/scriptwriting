@@ -1,0 +1,21 @@
+[project]
+name = "scriptwriting_flow"
+version = "0.1.0"
+description = "scriptwriting using crewAI"
+authors = [{ name = "Joao", email = "joao@prado.com" }]
+requires-python = ">=3.10,<=3.13"
+dependencies = [
+    "crewai[tools]>=0.86.0,<1.0.0"
+]
+
+[project.scripts]
+scriptwriting = "scriptwriting_flow.main:run"
+kickoff = "scriptwriting_flow.main:kickoff"
+run_crew = "scriptwriting_flow.main:run"
+train = "scriptwriting_flow.main:train"
+replay = "scriptwriting_flow.main:replay"
+test = "scriptwriting_flow.main:test"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

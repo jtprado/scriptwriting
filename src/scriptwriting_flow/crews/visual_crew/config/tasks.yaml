@@ -1,0 +1,13 @@
+generate_visuals:
+  description: >
+    Create visual prompts for each of the 3 script parts. Each part should have its own set of timestamped descriptions, 
+    visual compositions, and stylistic preferences.
+    The visuals should reflect the interests and preferences of the target audience.
+
+    Inputs:
+    Scripts Parts: {scripts_parts}
+    Target Audience: {target_audience}
+    
+  expected_output: >
+    A VisualPromptSeries containing 3 VisualPromptSet (one per script part).
+  agent: visual_artist
