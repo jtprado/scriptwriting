@@ -14,21 +14,19 @@ class ResearchCrew():
     # llm = ChatOpenAI(model="gpt-4o-mini")
 
     @agent
-    def historian_agent(self) -> Agent:
+    def historian(self) -> Agent:
         search_tool = SerperDevTool()
         return Agent(
-            config=self.agents_config['historian_agent'],
+            config=self.agents_config['historian'],
             tools=[search_tool],
-            llm=self.llm,
             verbose=True,
             allow_delegation=False
         )
 
     @agent
-    def splitter_agent(self) -> Agent:
+    def splitter(self) -> Agent:
         return Agent(
-            config=self.agents_config['splitter_agent'],
-            llm=self.llm,
+            config=self.agents_config['splitter'],
             verbose=True,
             allow_delegation=False
         )

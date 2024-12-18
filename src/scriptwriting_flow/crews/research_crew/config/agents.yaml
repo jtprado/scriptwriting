@@ -1,4 +1,4 @@
-historian_agent:
+historian:
   role: >
     Historical Researcher
   goal: >
@@ -8,7 +8,7 @@ historian_agent:
     A meticulous historian with expertise in uncovering nuanced details from archives and databases. 
     You thrive on producing research that informs and educates while being rooted in evidence.
 
-splitter_agent:
+splitter:
   role: >
     Research Splitter
   goal: >

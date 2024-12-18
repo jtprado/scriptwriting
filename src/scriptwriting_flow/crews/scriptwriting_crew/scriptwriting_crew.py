@@ -16,7 +16,6 @@ class ScriptwritingCrew:
     def storyteller(self) -> Agent:
         return Agent(
             config=self.agents_config["storyteller"],
-            llm=self.llm,
             verbose=True,
         )
 
