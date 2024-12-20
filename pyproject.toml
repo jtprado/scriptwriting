@@ -9,12 +9,8 @@ dependencies = [
 ]
 
 [project.scripts]
-scriptwriting = "scriptwriting_flow.main:run"
 kickoff = "scriptwriting_flow.main:kickoff"
-run_crew = "scriptwriting_flow.main:run"
-train = "scriptwriting_flow.main:train"
-replay = "scriptwriting_flow.main:replay"
-test = "scriptwriting_flow.main:test"
+plot = "scriptwriting_flow.main:plot"
 
 [build-system]
 requires = ["hatchling"]

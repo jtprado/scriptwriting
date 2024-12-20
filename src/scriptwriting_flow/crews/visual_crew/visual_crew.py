@@ -3,7 +3,7 @@ from crewai.project import CrewBase, agent, crew, task
 
 # from langchain_openai import ChatOpenAI
 
-from scriptwriting_flow.types import VisualPromptSeries
+from scriptwriting_flow.types import VisualPromptSeries, HistoryScriptSeries
 
 @CrewBase
 class VisualCrew():
@@ -23,7 +23,8 @@ class VisualCrew():
     def generate_visuals(self) -> Task:
         return Task(
             config=self.tasks_config["generate_visuals"], 
-            output_pydantic=VisualPromptSeries
+            output_pydantic=VisualPromptSeries,
+            context=[HistoryScriptSeries]
         )
 
     @crew

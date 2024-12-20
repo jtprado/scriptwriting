@@ -3,7 +3,7 @@ from crewai.project import CrewBase, agent, crew, task
 
 from langchain_openai import ChatOpenAI
 
-from scriptwriting_flow.types import HistoryScriptSeries
+from scriptwriting_flow.types import HistoryScriptSeries, HistoryResearchSeries
 
 @CrewBase
 class ScriptwritingCrew:
@@ -23,7 +23,8 @@ class ScriptwritingCrew:
     def generate_script(self) -> Task:
         return Task(
             config=self.tasks_config["script_generation"],
-            output_pydantic=HistoryScriptSeries
+            output_pydantic=HistoryScriptSeries,
+            context=[HistoryResearchSeries],
         )
 
     @crew

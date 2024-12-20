@@ -28,12 +28,6 @@ script_generation:
     Now you will receive 3 research parts that form a series. 
     For each part, produce a separate script following the above guidelines.
     The three scripts should link together narratively, forming a coherent "mini-series".
-    
-    Inputs:
-    Research Parts: {research_parts}
-    Target Audience: {target_audience}
-    Critic Feedback (optional): {critic_feedback}
-
   expected_output: >
     A HistoryScriptSeries with 3 HistoryScript objects, each containing:
     - title

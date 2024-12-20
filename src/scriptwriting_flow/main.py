@@ -54,7 +54,7 @@ class ScriptFlow(Flow[ScriptFlowState]):
     def write_script(self):
         print("Starting Scriptwriting Crew")
         inputs = {
-            "research_parts": [part.dict() for part in self.state.research_series.parts],
+            "research_parts": [part.model_dump() for part in self.state.research_series.parts],
             "target_audience": self.state.target_audience,
         }
 
@@ -72,7 +72,7 @@ class ScriptFlow(Flow[ScriptFlowState]):
         visual_crew = VisualCrew().crew()
         visuals_output = visual_crew.kickoff(
             inputs={
-                "scripts_parts": [script.dict() for script in self.state.script_series.parts],
+                "scripts_parts": [script.model_dump() for script in self.state.script_series.parts],
                 "target_audience": self.state.target_audience,
             }
         )
@@ -85,8 +85,8 @@ class ScriptFlow(Flow[ScriptFlowState]):
         validation_crew = ContentValidationCrew().crew()
         validation_output = validation_crew.kickoff(
             inputs={
-                "scripts_output": [script.dict() for script in self.state.script_series.parts],
-                "visuals_output": [v.dict() for v in self.state.visuals_series.parts],
+                "scripts_output": [script.model_dump() for script in self.state.script_series.parts],
+                "visuals_output": [v.model_dump() for v in self.state.visuals_series.parts],
                 "target_audience": self.state.target_audience,
             }
         )
@@ -103,7 +103,7 @@ class ScriptFlow(Flow[ScriptFlowState]):
             scriptwriting_crew = ScriptwritingCrew().crew()
             script_output = scriptwriting_crew.kickoff(
                 inputs={
-                    "research_parts": [part.dict() for part in self.state.research_series.parts],
+                    "research_parts": [part.model_dump() for part in self.state.research_series.parts],
                     "target_audience": self.state.target_audience,
                     "critic_feedback": self.state.validation_report.improvement_suggestions,
                 }
@@ -114,7 +114,7 @@ class ScriptFlow(Flow[ScriptFlowState]):
             visual_crew = VisualCrew().crew()
             visuals_output = visual_crew.kickoff(
                 inputs={
-                    "scripts_parts": [script.dict() for script in self.state.script_series.parts],
+                    "scripts_parts": [script.model_dump() for script in self.state.script_series.parts],
                     "target_audience": self.state.target_audience,
                 }
             )

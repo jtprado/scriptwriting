@@ -3,7 +3,7 @@ from crewai.project import CrewBase, agent, crew, task
 
 # from langchain_openai import ChatOpenAI
 
-from scriptwriting_flow.types import ValidationReport
+from scriptwriting_flow.types import ValidationReport, HistoryScriptSeries
 
 @CrewBase
 class ContentValidationCrew():
@@ -23,7 +23,8 @@ class ContentValidationCrew():
     def validate_content(self) -> Task:
         return Task(
             config=self.tasks_config["content_validation"],
-            output_pydantic=ValidationReport
+            output_pydantic=ValidationReport,
+            context=[HistoryScriptSeries]
         )
 
     @crew

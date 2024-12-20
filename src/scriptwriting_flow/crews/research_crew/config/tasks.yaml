@@ -26,11 +26,7 @@ split_research:
     The 3 parts should form a narrative sequence:
     Part 1: Origins and initial concepts
     Part 2: Development and evolution
-    Part 3: Final stages and lasting legacy
-
-    Inputs:
-    Full Research Report: {HistoryResearchReport}
-    
+    Part 3: Final stages and lasting legacy   
   expected_output: >
     A HistoryResearchSeries containing 3 HistoryResearchPart.
   agent: splitter
