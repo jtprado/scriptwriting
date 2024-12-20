@@ -1,9 +1,8 @@
+# src/scriptwriting_flow/crews/validation_crew/validation_crew.py
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 
-# from langchain_openai import ChatOpenAI
-
-from scriptwriting_flow.types import ValidationReport, HistoryScriptSeries
+from scriptwriting_flow.types import ValidationReport
 
 @CrewBase
 class ContentValidationCrew():
@@ -21,18 +20,17 @@ class ContentValidationCrew():
 
     @task
     def validate_content(self) -> Task:
+        # No context; we get inputs from main flow
         return Task(
             config=self.tasks_config["content_validation"],
-            output_pydantic=ValidationReport,
-            context=[HistoryScriptSeries]
+            output_pydantic=ValidationReport
         )
 
     @crew
     def crew(self) -> Crew:
-        """Creates the Content Validation Crew"""
         return Crew(
             agents=self.agents,
-            tasks=self.tasks,
+            tasks=[self.validate_content()],
             process=Process.sequential,
             verbose=True
         )

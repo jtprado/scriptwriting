@@ -1,14 +1,12 @@
+# src/scriptwriting_flow/crews/scriptwriting_crew/scriptwriting_crew.py
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
-
 from langchain_openai import ChatOpenAI
 
-from scriptwriting_flow.types import HistoryScriptSeries, HistoryResearchSeries
+from scriptwriting_flow.types import HistoryScriptSeries
 
 @CrewBase
 class ScriptwritingCrew:
-    """Scriptwriting Crew"""
-
     agents_config = "config/agents.yaml"
     tasks_config = "config/tasks.yaml"
 
@@ -21,18 +19,17 @@ class ScriptwritingCrew:
 
     @task
     def generate_script(self) -> Task:
+        # No context needed here because we receive inputs directly from the main flow.
         return Task(
             config=self.tasks_config["script_generation"],
-            output_pydantic=HistoryScriptSeries,
-            context=[HistoryResearchSeries],
+            output_pydantic=HistoryScriptSeries
         )
 
     @crew
     def crew(self) -> Crew:
-        """Creates the Scriptwriting Crew"""
         return Crew(
             agents=self.agents,
-            tasks=self.tasks,
+            tasks=[self.generate_script()],
             process=Process.sequential,
             verbose=True,
         )

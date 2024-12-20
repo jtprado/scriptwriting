@@ -1,9 +1,9 @@
+# src/scriptwriting_flow/crews/visual_crew/visual_crew.py
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
+from langchain_openai import ChatOpenAI
 
-# from langchain_openai import ChatOpenAI
-
-from scriptwriting_flow.types import VisualPromptSeries, HistoryScriptSeries
+from scriptwriting_flow.types import VisualPromptSeries
 
 @CrewBase
 class VisualCrew():
@@ -21,18 +21,17 @@ class VisualCrew():
 
     @task
     def generate_visuals(self) -> Task:
+        # No context here; we receive inputs from the main flow.
         return Task(
             config=self.tasks_config["generate_visuals"], 
-            output_pydantic=VisualPromptSeries,
-            context=[HistoryScriptSeries]
+            output_pydantic=VisualPromptSeries
         )
 
     @crew
     def crew(self) -> Crew:
-        """Creates the Visual Creation Crew"""
         return Crew(
             agents=self.agents,
-            tasks=self.tasks,
+            tasks=[self.generate_visuals()],
             process=Process.sequential,
             verbose=True
         )

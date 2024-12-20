@@ -1,7 +1,14 @@
 content_validation:
   description: >
-    Validate narrative quality, pace, fluency, engagement potential of the content.
-    Provide actionable feedback and suggestions for improvement where necessary.   
+    Validate the narrative quality, pace, fluency, and engagement potential of the provided scripts and visuals.
+    Provide actionable feedback and suggestions for improvement where necessary.
+
+    Inputs:
+    Scripts Output: {scripts_output}
+    Visuals Output: {visuals_output}
+    Target Audience: {target_audience}
+
+    Evaluate how well the content aligns with the audience's preferences and propose improvements if needed.   
   expected_output: >
     A ValidationReport containing detailed suggestions for improvement.
   agent: content_critic
