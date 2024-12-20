@@ -2,14 +2,20 @@
 import os
 import dotenv
 
-from crewai import Agent, Crew, Process, Task
+from crewai import Agent, Crew, Process, Task, LLM
 from crewai.project import CrewBase, agent, crew, task
-from crewai_tools import SerperDevTool
+from crewai_tools import SerperDevTool, BraveSearchTool, ScrapeWebsiteTool
 from langchain_openai import ChatOpenAI
 
 from scriptwriting_flow.types import HistoryResearchReport, HistoryResearchSeries
 
 dotenv.load_dotenv()
+
+llm = LLM(
+    model="anthropic/claude-3-5-sonnet-20241022",
+    temperature=0
+)
+
 
 @CrewBase
 class ResearchCrew():
@@ -18,11 +24,14 @@ class ResearchCrew():
 
     @agent
     def historian(self) -> Agent:
-        search_tool = SerperDevTool()
+        # search_tool = SerperDevTool()
+        brave_search_tool = BraveSearchTool()
+        scrape_rool = ScrapeWebsiteTool()
         return Agent(
             config=self.agents_config['historian'],
-            tools=[search_tool],
+            tools=[brave_search_tool, scrape_rool],
             verbose=True,
+            llm=self.llm,
             allow_delegation=False
         )
 

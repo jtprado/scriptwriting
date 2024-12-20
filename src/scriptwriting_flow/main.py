@@ -108,7 +108,7 @@ class ScriptFlow(Flow[ScriptFlowState]):
                     "target_audience": self.state.target_audience,
                 }
             )
-            self.state.visuals_series = visuals_output
+            self.state.visuals_series = visuals_output.pydantic
             print("Flow completed after improvements.")
         else:
             print("No further improvements needed. Flow completed.")

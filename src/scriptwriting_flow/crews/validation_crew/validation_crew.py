@@ -1,9 +1,13 @@
 # src/scriptwriting_flow/crews/validation_crew/validation_crew.py
-from crewai import Agent, Crew, Process, Task
+from crewai import Agent, Crew, Process, Task, LLM
 from crewai.project import CrewBase, agent, crew, task
 
 from scriptwriting_flow.types import ValidationReport
 
+llm = LLM(
+    model="anthropic/claude-3-5-sonnet-20241022",
+    temperature=0.5
+)
 @CrewBase
 class ContentValidationCrew():
     """Content Validation Crew"""

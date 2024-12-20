@@ -1,9 +1,14 @@
 # src/scriptwriting_flow/crews/scriptwriting_crew/scriptwriting_crew.py
-from crewai import Agent, Crew, Process, Task
+from crewai import Agent, Crew, Process, Task, LLM
 from crewai.project import CrewBase, agent, crew, task
 from langchain_openai import ChatOpenAI
 
 from scriptwriting_flow.types import HistoryScriptSeries
+
+llm = LLM(
+    model="anthropic/claude-3-5-sonnet-20241022",
+    temperature=0.8
+)
 
 @CrewBase
 class ScriptwritingCrew:
@@ -14,6 +19,7 @@ class ScriptwritingCrew:
     def storyteller(self) -> Agent:
         return Agent(
             config=self.agents_config["storyteller"],
+            llm=self.llm,
             verbose=True,
         )
 

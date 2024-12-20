@@ -1,9 +1,14 @@
 # src/scriptwriting_flow/crews/visual_crew/visual_crew.py
-from crewai import Agent, Crew, Process, Task
+from crewai import Agent, Crew, Process, Task, LLM
 from crewai.project import CrewBase, agent, crew, task
 from langchain_openai import ChatOpenAI
 
 from scriptwriting_flow.types import VisualPromptSeries
+
+llm = LLM(
+    model="anthropic/claude-3-5-sonnet-20241022",
+    temperature=0.8
+)
 
 @CrewBase
 class VisualCrew():
@@ -16,6 +21,7 @@ class VisualCrew():
     def visual_artist(self) -> Agent:
         return Agent(
             config=self.agents_config["visual_artist"],
+            llm=self.llm,
             verbose=True
         )
 
