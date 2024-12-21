@@ -11,12 +11,6 @@ from scriptwriting_flow.types import HistoryResearchReport, HistoryResearchSerie
 
 dotenv.load_dotenv()
 
-llm = LLM(
-    model="anthropic/claude-3-5-sonnet-20241022",
-    temperature=0
-)
-
-
 @CrewBase
 class ResearchCrew():
     agents_config = "config/agents.yaml"
@@ -31,7 +25,6 @@ class ResearchCrew():
             config=self.agents_config['historian'],
             tools=[brave_search_tool, scrape_rool],
             verbose=True,
-            llm=self.llm,
             allow_delegation=False
         )
 

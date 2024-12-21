@@ -5,11 +5,6 @@ from langchain_openai import ChatOpenAI
 
 from scriptwriting_flow.types import VisualPromptSeries
 
-llm = LLM(
-    model="anthropic/claude-3-5-sonnet-20241022",
-    temperature=0.8
-)
-
 @CrewBase
 class VisualCrew():
     """Visual Creation Crew"""
@@ -21,7 +16,6 @@ class VisualCrew():
     def visual_artist(self) -> Agent:
         return Agent(
             config=self.agents_config["visual_artist"],
-            llm=self.llm,
             verbose=True
         )
 
